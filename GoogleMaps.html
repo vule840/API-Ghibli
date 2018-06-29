@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Google Mapa API</title>
+</head>
+
+<body>
+    <!-- <button id="b">export to CSV</button> -->
+    <style>
+    /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+
+    #map {
+        height: 100%;
+    }
+    /* Optional: Makes the sample page fill the window. */
+
+    html,
+    body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
+    </style>
+    <!-- <div id="box-container">
+  <div id="box-1"></div>
+  <div id="box-2"></div>
+</div>
+
+<span>Ovo je span</span>-->
+    <div id="map"></div>
+    <script type="text/javascript">
+    var map;
+    //funkcija
+    function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+            center: { lat: 45.815, lng: 15.981 },
+            zoom: 13
+        });
+        //Lokacija Zg
+        var zg = { lat: 45.815, lng: 15.981 };
+        //Novi marker
+        var marker = new google.maps.Marker({
+            position: zg,
+            map: map,
+            icon: 'https://png.icons8.com/search'
+
+        })
+
+    }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA1Y6UG-DN0pYh1AnR3OtKp45obeoYjDp0&callback=initMap" async defer></script>
+</body>
+
+</html>
