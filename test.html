@@ -64,7 +64,7 @@
     var upit = new XMLHttpRequest();
 
     // Open a new connection, using the GET request on the URL endpoint
-    upit.open('GET', 'https://ghibliapi.herokuapp.com/species', true);
+    upit.open('GET', 'https://ghibliapi.herokuapp.com/vehicles', true);
 
     upit.onload = function() {
         // Begin accessing JSON data here
@@ -76,8 +76,13 @@
             // Log each movie's title
 
             const h1 = document.createElement('h1');
-            h1.textContent = movie.title;
-            app.appendChild(h1)
+            h1.textContent = movie.name;
+            container.appendChild(h1);
+
+            const p = document.createElement('p');
+            p.textContent = movie.description;
+            container.appendChild(p);
+
             console.log(movie.name);
             console.log(upit.status);
 
