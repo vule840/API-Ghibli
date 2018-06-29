@@ -7,99 +7,128 @@
 
 <body>
     <!-- <button id="b">export to CSV</button> -->
+    <style>
+    #box-container {
+        background: gray;
+        display: flex;
+        height: 500px;
+    }
 
+    #box-1 {
+        background-color: dodgerblue;
+        width: 25%;
+        height: 100%;
+    }
 
-
-<style>
-  #box-container {
-    background: gray;
-    display: flex;
-    height: 500px;
-    
-  }
-  #box-1 {
-    background-color: dodgerblue;
-    width: 25%;
-    height: 100%;
-  }
-
-  #box-2 {
-    background-color: orangered;
-    width: 25%;
-    height: 100%;
-  }
-</style>
-
-<!-- <div id="box-container">
+    #box-2 {
+        background-color: orangered;
+        width: 25%;
+        height: 100%;
+    }
+    </style>
+    <!-- <div id="box-container">
   <div id="box-1"></div>
   <div id="box-2"></div>
 </div>
 
 <span>Ovo je span</span>-->
-<div id="apple">Apples taste good.</div> 
+    <div id="apple">Apples taste good.</div>
+    <button id="gumb">Klikni me</button>
 
 
-<button id="gumb">Klikni me</button>
+    <div id="root">
+        
+
+    </div>
 
     <script type="text/javascript">
 
+    const app = document.getElementById('root');
 
-// Create a request variable and assign a new XMLHttpRequest object to it.
-var upit = new XMLHttpRequest();
+    console.log(app);
 
-// Open a new connection, using the GET request on the URL endpoint
-upit.open('GET', 'https://ghibliapi.herokuapp.com/species', true);
+    const img = document.createElement('img');
+    img.src = 'logo.png';
+    //const divFoo = document.createElement('h2');
+    const container = document.createElement('div');
+    container.setAttribute('class', 'container')
+   // divFoo.textContent = 'Ovo je naslov Foo';
+    //divFoo.color = 'blue'
 
-upit.onload = function () {
-  // Begin accessing JSON data here
-  // Begin accessing JSON data here
-var data = JSON.parse(this.response);
-
-data.forEach(movie => {
-  // Log each movie's title
-  console.log(movie.name);
-});
-  }
-
-
-// Send request
-upit.send();
+    app.appendChild(container)
+    app.appendChild(img);
 
 
 
-  /*****/      
+    // Create a request variable and assign a new XMLHttpRequest object to it.
+    var upit = new XMLHttpRequest();
 
-const LOCAL_FORECAST = {
-  today: { min: 72, max: 83 },
-  tomorrow: { min: 73.3, max: 84.6 }
-};
+    // Open a new connection, using the GET request on the URL endpoint
+    upit.open('GET', 'https://ghibliapi.herokuapp.com/species', true);
 
-function getMaxOfTmrw(forecast) {
-  "use strict";
-  // change code below this line
-  const {tomorrow:{max:maxOfTomorrow}} = forecast; // change this line
-  // change code above this line
-  return maxOfTomorrow;
-}
+    upit.onload = function() {
+        // Begin accessing JSON data here
+        // Begin accessing JSON data here
+        var data = JSON.parse(this.response);
 
-console.log(getMaxOfTmrw(LOCAL_FORECAST)); // should be 84.6
+         if (upit.status >= 200 && upit.status < 400) {
+              data.forEach(movie => {
+            // Log each movie's title
+
+            const h1 = document.createElement('h1');
+            h1.textContent = movie.title;
+            app.appendChild(h1)
+            console.log(movie.name);
+            console.log(upit.status);
+
+        });
+         } else {
+            console.log('error')
+         }   
+
+    }
+
+    // Send request
+    upit.send();
+
+   
+
+    //app.appendChild(divFoo);
+    
+
+    /*****/
+
+    const LOCAL_FORECAST = {
+        today: { min: 72, max: 83 },
+        tomorrow: { min: 73.3, max: 84.6 }
+    };
+
+    function getMaxOfTmrw(forecast) {
+        "use strict";
+        // change code below this line
+        const { tomorrow: { max: maxOfTomorrow } } = forecast; // change this line
+        // change code above this line
+        return maxOfTomorrow;
+    }
+
+    console.log(getMaxOfTmrw(LOCAL_FORECAST)); // should be 84.6
 
 
-/***/
-var voxel = {x: 1, y: 2, z:5};
-const {x,y,z} = voxel;
-const {x: a, y:b, z:c} = voxel;
-console.log(a);
-/***/
+    /***/
+    var voxel = { x: 1, y: 2, z: 5 };
+    const { x, y, z } = voxel;
+    const { x: a, y: b, z: c } = voxel;
+    console.log(a);
+    /***/
 
-const aa = {
-    start: {x: 5, y:6},
-    end: {x:6, y:-9}
-};
-const {start : {x:StartX, y:StartY}} = aa;
-console.log(StartX)
-/****/
-    var dog = { 
+    const aa = {
+        start: { x: 5, y: 6 },
+        end: { x: 6, y: -9 }
+    };
+    const { start: { x: StartX, y: StartY } } = aa;
+    console.log(StartX)
+    /****/
+    var dog = {
         "name": "SoDFDFF",
         "age": 3,
         "weight": 20
@@ -115,15 +144,15 @@ console.log(StartX)
 
     var baza = 'https://randomuser.me/api/';
 
-    fetch(baza + "?gender=female").then(function(response){
-            response.json().then(function(json){
-                console.log(json)
-            });
+    fetch(baza + "?gender=female").then(function(response) {
+        response.json().then(function(json) {
+            console.log(json)
+        });
     });
 
     /*******ELEMENTS*************/
 
-  /* var event = new Event("eat");
+    /* var event = new Event("eat");
    var element = document.getElementById("apple");
 
     element.addEventListener("eat", function(event) {
@@ -144,7 +173,7 @@ function klikni(event)
 
 gumb.addEventListener("mouseout", klikni)*/
 
-     /*   var apple = document.getElementById("apple");
+    /*   var apple = document.getElementById("apple");
 var span = document.createElement("span");
                 span.setAttribute("class", "date");
                 span.textContent = "sfsdfsdf";
@@ -161,106 +190,109 @@ function test(){
 }
 test();*/
 
-/*******INTERVAL*************/
+    /*******INTERVAL*************/
 
 
-   /* var sec = 0;
-    function printTime(){
-        sec++;
-        console.log("sekunde prošle: " + sec)
-        if(sec === 5){
-            clearInterval(interval);
-            console.log("gotov je 10 sekundi")
+    /* var sec = 0;
+     function printTime(){
+         sec++;
+         console.log("sekunde prošle: " + sec)
+         if(sec === 5){
+             clearInterval(interval);
+             console.log("gotov je 10 sekundi")
+             
+         }
+     }
+    var interval = setInterval(printTime, 1000);
+
+
+         var map = new Map();
+         map.set("red","apple");
+         map.set("blue","blueberry");
+         map.set("green","pear");
+
+         console.log(map);
+
+
+         function say(){
+             console.log("yo");
+
+         }
+         var timeout = setTimeout(say, 5000);*/
+
+    /*******KLASE*************/
+    /*class Pet{
+        constructor(name, weight, price){
+            this.name = name;
+            this.weight = weight;
+            this.price = price;
+        }
+        getinfo(){
+            return "Yo do you want this " + this.name + " who weights " + this.weight + " but hes price is " + this.price + " ?"
+        }
+    }
+
+    class Dog extends Pet{
+        bark(){
+            console.log("BARK, BARK");
+        }
+    }
+
+    class Cat extends Pet{
+
+        constructor(name,weight,price,height){
+            super(name,weight,price);
+            
+            this.height = height;
+        }
+
+        yawn(){
+            console.log("MIAU, MIAU")
+        }
+        favoriteBrandFood(){
+            console.log("Purina");
+        }
+        getinfo(){
+           return "yo this is my freking Cat, name is " + this.name + " and he got mayn kilos " + this.weight + "and she a lit expensive, just " + this.price + " but dont worry, she is " + this.height + " tall."
+        }
+    }
+
+    var pet = new Pet("Flofster", 30 + " kg" , 30 + " kn");
+    console.log(pet.getinfo());
+
+    var pet2 = new Pet("Darac", 49,32);
+    console.log(pet2.getinfo());
+
+    var dog = new Dog("zarac", 21, 12);
+    console.log(dog)
+
+    var cat = new Cat("mica" , 10, 12, 45);
+    console.log(cat.getinfo());
+    cat.yawn();
+    cat.favoriteBrandFood();/*
+
+
+       /* function titleCase(str) {
+            
+
+            for (var i = 0; i < str.length; i++) {
+                 str[i].toLowerCase();
+                 console.log(str[i])
+                if (str[i] === ' ') {
+                    return  str[0].toUpperCase();
+                }
+            }
+
             
         }
-    }
-   var interval = setInterval(printTime, 1000);
 
-
-        var map = new Map();
-        map.set("red","apple");
-        map.set("blue","blueberry");
-        map.set("green","pear");
-
-        console.log(map);
-
-
-        function say(){
-            console.log("yo");
-
-        }
-        var timeout = setTimeout(say, 5000);*/
-    
-/*******KLASE*************/
-/*class Pet{
-    constructor(name, weight, price){
-        this.name = name;
-        this.weight = weight;
-        this.price = price;
-    }
-    getinfo(){
-        return "Yo do you want this " + this.name + " who weights " + this.weight + " but hes price is " + this.price + " ?"
-    }
-}
-
-class Dog extends Pet{
-    bark(){
-        console.log("BARK, BARK");
-    }
-}
-
-class Cat extends Pet{
-
-    constructor(name,weight,price,height){
-        super(name,weight,price);
-        
-        this.height = height;
-    }
-
-    yawn(){
-        console.log("MIAU, MIAU")
-    }
-    favoriteBrandFood(){
-        console.log("Purina");
-    }
-    getinfo(){
-       return "yo this is my freking Cat, name is " + this.name + " and he got mayn kilos " + this.weight + "and she a lit expensive, just " + this.price + " but dont worry, she is " + this.height + " tall."
-    }
-}
-
-var pet = new Pet("Flofster", 30 + " kg" , 30 + " kn");
-console.log(pet.getinfo());
-
-var pet2 = new Pet("Darac", 49,32);
-console.log(pet2.getinfo());
-
-var dog = new Dog("zarac", 21, 12);
-console.log(dog)
-
-var cat = new Cat("mica" , 10, 12, 45);
-console.log(cat.getinfo());
-cat.yawn();
-cat.favoriteBrandFood();/*
-
-
-   /* function titleCase(str) {
- 		
-
-        for (var i = 0; i < str.length; i++) {
-        	 str[i].toLowerCase();
-        	 console.log(str[i])
-        	if (str[i] === ' ') {
-        		return  str[0].toUpperCase();
-        	}
-        }
-
-        
-    }
-
-    console.log(titleCase("I'm a little tea pot"));*/
+        console.log(titleCase("I'm a little tea pot"));*/
 
     //alert('titleCadfse')
     </script>
+
+
+
 </body>
 
 </html>
