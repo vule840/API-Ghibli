@@ -10,19 +10,70 @@
     <style>
    
     </style>
-    <!-- <div id="box-container">
-  <div id="box-1"></div>
-  <div id="box-2"></div>
-</div>
-
-<span>Ovo je span</span>-->
-    <div id="map"></div>
+   
+   <h2 id="name">Tu ide name</h2>
+   <div id="app">
+       
+   </div>
     <script type="text/javascript">
  
+         // Create a request variable and assign a new XMLHttpRequest object to it.
+    var upit = new XMLHttpRequest();
 
+    // Open a new connection, using the GET request on the URL endpoint
+    
+    upit.open('GET', 'https://randomuser.me/api/?results=10', true);
+
+    upit.onload = function() {
+        // Begin accessing JSON data here
+        // Begin accessing JSON data here
+        //napravi konstante kojima onda pristupaš
+        var data = JSON.parse(this.response);
+        const app = document.getElementById('app')
+        
+        console.log(app)
+
+        if (upit.status >= 200 && upit.status < 400) {
+            console.log(data)
+           let name = document.getElementById('name');
+           name.textContent = data.results[0].name.first;
+
+           let results = data.results;
+            for(var i=0; i<results.length; i++) {
+                //console.log(results[i]);
+            }
+            results.forEach(function (result) {
+                console.log(result.gender);
+                const gender = document.createElement('p');
+                const email = document.createElement('b');
+
+                gender.textContent = result.gender;
+                email.textContent = result.email;
+                app.appendChild(gender);
+                app.appendChild(email)
+            });
+ 
+
+           /*for (var key in data) {
+            if (data.hasOwnProperty(key)) {
+              console.log(data[key].results);
+              console.log(data[key].msg);
+            }
+            }*/
+           
+        } else {
+            console.log('error')
+        }
+
+    }
+
+    // Send request
+    upit.send();
 
     </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA1Y6UG-DN0pYh1AnR3OtKp45obeoYjDp0&callback=initMap" async defer></script>
+
+
+    
 </body>
 
 </html>
