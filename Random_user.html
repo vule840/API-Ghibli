@@ -46,11 +46,14 @@
                 console.log(result.gender);
                 const gender = document.createElement('p');
                 const email = document.createElement('b');
+                const img = document.createElement('img');
+                img.src = result.picture.large;
 
                 gender.textContent = result.gender;
                 email.textContent = result.email;
                 app.appendChild(gender);
-                app.appendChild(email)
+                app.appendChild(email);
+                app.appendChild(img)
             });
  
 
