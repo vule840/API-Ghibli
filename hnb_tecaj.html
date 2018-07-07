@@ -22,7 +22,7 @@
 
     // Open a new connection, using the GET request on the URL endpoint
     
-    upit.open('GET', 'http://hnbex.eu/api/v1/rates/daily/', true);
+    upit.open('GET', 'https://cors.io/?http://hnbex.eu/api/v1/rates/daily/', true);
 
     upit.onload = function() {
         // Begin accessing JSON data here
@@ -31,20 +31,20 @@
         var data = JSON.parse(this.response);
         const app = document.getElementById('app')
         
-        console.log(app)
+        console.log(app);
 
         if (upit.status >= 200 && upit.status < 400) {
             console.log(data)
            //let name = document.getElementById('name');
            //name.textContent = data.results[0].name.first;
 
-           //let results = data;
+           let results = data;
            for(var i=0; i<data.length; i++) {
                 
                
             }
             results.forEach(function (result) {
-              
+              console.log(result.buying_rate)
             
             });
  
