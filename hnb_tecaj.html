@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>HNB tecaj</title>
+</head>
+
+<body>
+    <!-- <button id="b">export to CSV</button> -->
+    <style>
+   
+    </style>
+   
+   <h2 id="name">Tu ide name</h2>
+   <div id="app">
+       
+   </div>
+    <script type="text/javascript">
+ 
+         // Create a request variable and assign a new XMLHttpRequest object to it.
+    var upit = new XMLHttpRequest();
+
+    // Open a new connection, using the GET request on the URL endpoint
+    
+    upit.open('GET', 'http://hnbex.eu/api/v1/rates/daily/', true);
+
+    upit.onload = function() {
+        // Begin accessing JSON data here
+        // Begin accessing JSON data here
+        //napravi konstante kojima onda pristupaš
+        var data = JSON.parse(this.response);
+        const app = document.getElementById('app')
+        
+        console.log(app)
+
+        if (upit.status >= 200 && upit.status < 400) {
+            console.log(data)
+           //let name = document.getElementById('name');
+           //name.textContent = data.results[0].name.first;
+
+           //let results = data;
+           for(var i=0; i<data.length; i++) {
+                
+               
+            }
+            results.forEach(function (result) {
+              
+            
+            });
+ 
+
+           /*for (var key in data) {
+            if (data.hasOwnProperty(key)) {
+              console.log(data[key].results);
+              console.log(data[key].msg);
+            }
+            }*/
+           
+        } else {
+            console.log('error')
+        }
+
+    }
+
+    // Send request
+    upit.send();
+
+    </script>
+
+
+    
+</body>
+
+</html>
