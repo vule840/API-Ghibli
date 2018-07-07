@@ -22,7 +22,7 @@
 
     // Open a new connection, using the GET request on the URL endpoint
     
-    upit.open('GET', 'https://randomuser.me/api/?results=10', true);
+    upit.open('GET', 'http://logobox.agency/wp-json/wp/v2/posts', true);
 
     upit.onload = function() {
         // Begin accessing JSON data here
@@ -35,15 +35,29 @@
 
         if (upit.status >= 200 && upit.status < 400) {
             console.log(data)
-           let name = document.getElementById('name');
-           name.textContent = data.results[0].name.first;
+           //let name = document.getElementById('name');
+           //name.textContent = data.results[0].name.first;
 
-           let results = data.results;
-            for(var i=0; i<results.length; i++) {
-                //console.log(results[i]);
+           let results = data;
+           for(var i=0; i<data.length; i++) {
+                console.log(data[i]);
             }
             results.forEach(function (result) {
-                
+                console.log(result.id);
+
+                let id = document.createElement('p');
+                id.textContent = result.id;
+                app.appendChild(id);
+
+                let h1 = document.createElement('h1');
+                h1.textContent = result.title.rendered;
+                app.appendChild(h1);
+
+                let link = document.createElement('a');
+                link.textContent = "link";
+                link.href = result.link;
+                console.log(link)
+                app.appendChild(link);
             
             });
  
