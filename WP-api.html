@@ -22,7 +22,7 @@
 
     // Open a new connection, using the GET request on the URL endpoint
     
-    upit.open('GET', 'http://logobox.agency/wp-json/wp/v2/posts', true);
+    upit.open('GET', 'http://logobox.agency/wp-json/wp/v2/posts?_embed', true);
 
     upit.onload = function() {
         // Begin accessing JSON data here
@@ -41,9 +41,14 @@
            let results = data;
            for(var i=0; i<data.length; i++) {
                 console.log(data[i]);
+               
             }
             results.forEach(function (result) {
                 console.log(result.id);
+                let featuredImage = document.createElement('img');
+                featuredImage.src = result._embedded['wp:featuredmedia']['0'].source_url;
+                app.appendChild(featuredImage);
+                console.log(result._embedded['wp:featuredmedia']['0'].source_url);
 
                 let id = document.createElement('p');
                 id.textContent = result.id;
