@@ -8,7 +8,13 @@
 <body>
     <!-- <button id="b">export to CSV</button> -->
     <style>
-   
+        #app{
+          margin: 0 auto;
+          width: 1000px;
+        }
+        img{
+          width:50%;
+        }
     </style>
    
    <h2 id="name">Tu ide name</h2>
@@ -16,7 +22,45 @@
        
    </div>
     <script type="text/javascript">
+
+      //https://scotch.io/tutorials/how-to-use-the-javascript-fetch-api-to-get-data
+
+       // const url = 'http://version1.api.memegenerator.net//Instances_Select_ByNew?languageCode=en&pageIndex=0&urlName=Insanity-Wolf&apiKey=demo';
+
+      /*var obj = {}
+      console.log(obj)*/
+      let app = document.getElementById('app');
+
+      function createNode(element){
+        return document.createElement(element);
+      }
+
  
+     function append(parent,el){
+        return parent.appendChild(el);
+     }
+    
+
+      console.log(createNode('img'))
+
+       const url = 'http://version1.api.memegenerator.net//Generators_Select_ByPopular?pageIndex=0&pageSize=12&days=&apiKey=demo';
+
+        fetch(url)
+        .then((resp) => resp.json())
+        .then(function(data){
+            
+            let results = data.result;
+            return results.map(function(result){
+              console.log(result);
+              let img = createNode('img');
+              img.src = result.imageUrl;
+
+               append(app,img);
+            })
+        })
+        .catch(function(error){
+            console.log('error');
+        })
  
 
     </script>
