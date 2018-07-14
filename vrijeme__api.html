@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Vrijeme API primjer</title>
+</head>
+
+<body>
+    <!-- <button id="b">export to CSV</button> -->
+    <style>
+
+    </style>
+    <!-- <div id="box-container">
+  <div id="box-1"></div>
+  <div id="box-2"></div>
+</div>
+
+<span>Ovo je span</span>-->
+    <div id="app">
+    </div>
+    <script type="text/javascript">
+    /*const app = document.getElementById('app');
+
+            console.log(app);
+
+            const img = document.createElement('img');
+            img.src = 'logo.png';
+           
+            const container = document.createElement('div');
+            container.setAttribute('class', 'container')
+           
+
+            app.appendChild(container)
+            app.appendChild(img);*/
+
+var x = document.navigator;
+console.log(x)
+    // Create a request variable and assign a new XMLHttpRequest object to it.
+    var upit = new XMLHttpRequest();
+
+    // Open a new connection, using the GET request on the URL endpoint
+    let grad = prompt();
+    let API = '58ee7a14e4dc2a1511772f06678edb35'
+    upit.open('GET', 'https://api.openweathermap.org/data/2.5/weather?q=' + grad + '&APPID=' + API, true);
+
+    upit.onload = function() {
+        // Begin accessing JSON data here
+        // Begin accessing JSON data here
+        //napravi konstante kojima onda pristupaš
+        var data = JSON.parse(this.response);
+        const app = document.getElementById('app')
+        const name = data.name;
+        const wind = data.wind.speed;
+        const weather = data.weather[0].main;
+        const desc = data.weather[0].description;
+
+        if (upit.status >= 200 && upit.status < 400) {
+
+            // dodaj vrijeme u vidljivo
+            //daj mi ima grada
+            const h1 = document.createElement('h1');
+            h1.textContent = name;
+            app.appendChild(h1);
+
+            //vjetar
+            const h2 = document.createElement('h2');
+            h2.textContent = wind;
+            app.appendChild(h2);
+
+            //opis
+            const p = document.createElement('p');
+            p.textContent = desc;
+            app.appendChild(p);
+
+            console.log(data);
+            console.log(name);
+            console.log(wind);
+            console.log(weather);;
+        } else {
+            console.log('error')
+        }
+
+    }
+
+    // Send request
+    upit.send();
+    </script>
+</body>
+
+</html>

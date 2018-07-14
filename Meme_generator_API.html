@@ -48,7 +48,7 @@
         fetch(url)
         .then((resp) => resp.json())
         .then(function(data){
-            
+            console.log(data);
             let results = data.result;
             return results.map(function(result){
               console.log(result);
